@@ -68,6 +68,91 @@
   .btn-primary { background:var(--btn-bg); color:var(--btn-text); box-shadow: 0 12px 30px rgba(0,188,212,0.08); transition:transform .15s ease, box-shadow .15s ease; }
   .btn-primary:hover{ transform:translateY(-3px); box-shadow: 0 18px 48px rgba(0,188,212,0.12); }
 
+  /* Team Member Modal Overlay */
+  .team-modal-overlay {
+    position: fixed;
+    top: 1cm;
+    left: 1cm;
+    right: 1cm;
+    bottom: 1cm;
+    background: linear-gradient(135deg, rgba(12,19,32,0.95), rgba(5,7,20,0.98));
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    backdrop-filter: blur(20px);
+    z-index: 200;
+    display: none;
+    padding: 30px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+    overflow-y: auto;
+  }
+  
+  .team-modal-content {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 30px;
+    height: 100%;
+  }
+  
+  .team-modal-image {
+    width: 100%;
+    height: 300px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--cyan), var(--violet));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 80px;
+    font-weight: 900;
+    color: #021226;
+  }
+  
+  .team-modal-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .team-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 20px;
+    transition: all 0.2s ease;
+  }
+  
+  .team-modal-close:hover {
+    background: rgba(255,255,255,0.2);
+    transform: scale(1.1);
+  }
+  
+  @media (max-width: 768px) {
+    .team-modal-overlay {
+      top: 0.5cm;
+      left: 0.5cm;
+      right: 0.5cm;
+      bottom: 0.5cm;
+      padding: 20px;
+    }
+    
+    .team-modal-content {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    
+    .team-modal-image {
+      height: 200px;
+    }
+  }
+
   /* small translucent bio window (faded) */
   .bio-overlay{ position:fixed; right:24px; bottom:24px; width:360px; max-width:calc(100% - 48px); z-index:160; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.04); padding:14px; border-radius:12px; box-shadow:0 30px 80px rgba(2,6,23,0.6); backdrop-filter: blur(6px); color:#e6f7ff; }
 
@@ -166,7 +251,7 @@
 
     <div style="margin-top:12px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;">
       <!-- Arjun -->
-      <div class="panel person" tabindex="0" role="button" onclick="openBio('arjun')" onkeypress="if(event.key==='Enter') openBio('arjun')">
+      <div class="panel person" tabindex="0" role="button" onclick="openTeamModal('arjun')" onkeypress="if(event.key==='Enter') openTeamModal('arjun')">
         <div style="display:flex;gap:12px;align-items:center">
           <div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(90deg,var(--cyan),var(--violet));display:flex;align-items:center;justify-content:center;font-weight:900;color:#021226">A</div>
           <div>
@@ -177,40 +262,52 @@
         <p class="muted" style="margin-top:8px">Leads coordination, presentation, and safety for high-impact demonstrations (organic & public-safety focus).</p>
       </div>
 
-      <!-- XXX -->
-      <div class="panel person" tabindex="0" role="button" onclick="openBio('xxx')" onkeypress="if(event.key==='Enter') openBio('xxx')">
+      <!-- Aksh Sharma -->
+      <div class="panel person" tabindex="0" role="button" onclick="openTeamModal('aksh')" onkeypress="if(event.key==='Enter') openTeamModal('aksh')">
         <div style="display:flex;gap:12px;align-items:center">
-          <div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(90deg,#8b5cf6,#06b6d4);display:flex;align-items:center;justify-content:center;font-weight:900;color:#021226">X</div>
+          <div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(90deg,#8b5cf6,#06b6d4);display:flex;align-items:center;justify-content:center;font-weight:900;color:#021226">A</div>
           <div>
-            <div style="font-weight:900">XXX</div>
-            <div class="muted">Secretary</div>
-          </div>
-        </div>
-        <p class="muted" style="margin-top:8px">Documentation, scheduling and communications lead.</p>
-      </div>
-
-      <!-- YYY -->
-      <div class="panel person" tabindex="0" role="button" onclick="openBio('yyy')" onkeypress="if(event.key==='Enter') openBio('yyy')">
-        <div style="display:flex;gap:12px;align-items:center">
-          <div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(90deg,#00d8ff,#7c3aed);display:flex;align-items:center;justify-content:center;font-weight:900;color:#021226">Y</div>
-          <div>
-            <div style="font-weight:900">YYY</div>
+            <div style="font-weight:900">Aksh Sharma</div>
             <div class="muted">Vice President</div>
           </div>
         </div>
         <p class="muted" style="margin-top:8px">Oversees exhibit fabrication and safety systems; materials & scale-up focus.</p>
       </div>
 
-      <!-- ZZZ -->
-      <div class="panel person" tabindex="0" role="button" onclick="openBio('zzz')" onkeypress="if(event.key==='Enter') openBio('zzz')">
+      <!-- Harshvardhan Singh Udawat -->
+      <div class="panel person" tabindex="0" role="button" onclick="openTeamModal('harshvardhan')" onkeypress="if(event.key==='Enter') openTeamModal('harshvardhan')">
         <div style="display:flex;gap:12px;align-items:center">
-          <div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(90deg,#7c3aed,#00d8ff);display:flex;align-items:center;justify-content:center;font-weight:900;color:#021226">Z</div>
+          <div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(90deg,#00d8ff,#7c3aed);display:flex;align-items:center;justify-content:center;font-weight:900;color:#021226">H</div>
           <div>
-            <div style="font-weight:900">ZZZ</div>
+            <div style="font-weight:900">Harshvardhan Singh Udawat</div>
             <div class="muted">IT & Tech Head</div>
           </div>
         </div>
         <p class="muted" style="margin-top:8px">Manages interactive displays, projection mapping and site tech.</p>
+      </div>
+
+      <!-- Samarth Jain -->
+      <div class="panel person" tabindex="0" role="button" onclick="openTeamModal('samarth')" onkeypress="if(event.key==='Enter') openTeamModal('samarth')">
+        <div style="display:flex;gap:12px;align-items:center">
+          <div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(90deg,#7c3aed,#00d8ff);display:flex;align-items:center;justify-content:center;font-weight:900;color:#021226">S</div>
+          <div>
+            <div style="font-weight:900">Samarth Jain</div>
+            <div class="muted">Secretary</div>
+          </div>
+        </div>
+        <p class="muted" style="margin-top:8px">Documentation, scheduling and communications lead.</p>
+      </div>
+      
+      <!-- Vansh Mittal -->
+      <div class="panel person" tabindex="0" role="button" onclick="openTeamModal('vansh')" onkeypress="if(event.key==='Enter') openTeamModal('vansh')">
+        <div style="display:flex;gap:12px;align-items:center">
+          <div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(90deg,#00d8ff,#7c3aed);display:flex;align-items:center;justify-content:center;font-weight:900;color:#021226">V</div>
+          <div>
+            <div style="font-weight:900">Vansh Mittal</div>
+            <div class="muted">Secretary</div>
+          </div>
+        </div>
+        <p class="muted" style="margin-top:8px">Documentation, scheduling and communications lead.</p>
       </div>
     </div>
   </section>
@@ -361,6 +458,14 @@
 
   <footer>© 2025 Chemistry Exhibition — Department of Chemical Sciences</footer>
 </main>
+
+<!-- TEAM MEMBER MODAL -->
+<div id="teamModal" class="team-modal-overlay">
+  <button class="team-modal-close" onclick="closeTeamModal()">×</button>
+  <div id="teamModalContent" class="team-modal-content">
+    <!-- Content will be populated by JavaScript -->
+  </div>
+</div>
 
 <!-- DETAIL VIEW (single-file page content displayed here) -->
 <section id="detailView" style="display:none; padding-top:120px; padding-bottom:80px; min-height:60vh; position:relative; z-index:50;">
@@ -586,6 +691,128 @@ function playEnergySound(type='pulse'){
   // final tiny click
   setTimeout(()=> { gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.02); }, 800);
 }
+
+/* ----------------------------
+  Team Member Data
+-----------------------------*/
+const TEAM_MEMBERS = {
+  'arjun': {
+    name: 'Arjun Tosawad',
+    role: 'President',
+    imageLetter: 'A',
+    details: `
+      <p>Arjun Tosawad leads the Chemistry Exhibition 2025 as President, bringing exceptional organizational skills and a deep passion for chemical sciences. With a focus on organic chemistry and public safety, Arjun ensures all demonstrations meet the highest standards of both educational value and safety protocols.</p>
+      
+      <p>His leadership extends beyond coordination to hands-on involvement in experiment design, particularly in the areas of green chemistry and sustainable synthesis methods. Arjun works closely with faculty mentors to develop engaging content that bridges theoretical concepts with real-world applications.</p>
+      
+      <p>Under his guidance, the team has implemented innovative safety measures and streamlined communication channels between different exhibit teams, resulting in a more cohesive and impactful exhibition experience for all visitors.</p>
+    `
+  },
+  'aksh': {
+    name: 'Aksh Sharma',
+    role: 'Vice President',
+    imageLetter: 'A',
+    details: `
+      <p>Aksh Sharma serves as Vice President, bringing strong technical expertise and project management skills to the exhibition team. With a background in materials science and nanotechnology, Aksh oversees the fabrication and implementation of complex exhibits.</p>
+      
+      <p>His responsibilities include coordinating with multiple departments, managing timelines, and ensuring that all technical aspects of the exhibition run smoothly. Aksh has been instrumental in developing the materials characterization workflows that form the backbone of several key exhibits.</p>
+      
+      <p>Through his leadership, the team has successfully integrated advanced safety systems and scaled up demonstration protocols to accommodate larger audiences while maintaining the highest standards of chemical safety.</p>
+    `
+  },
+  'harshvardhan': {
+    name: 'Harshvardhan Singh Udawat',
+    role: 'IT & Tech Head',
+    imageLetter: 'H',
+    details: `
+      <p>Harshvardhan Singh Udawat leads the technical infrastructure of Chemistry Exhibition 2025 as IT & Tech Head. With expertise in both software development and hardware integration, he has transformed the exhibition's digital presence.</p>
+      
+      <p>Under his direction, the team has implemented interactive displays, projection mapping systems, and real-time data visualization tools that enhance visitor engagement. Harshvardhan has developed custom software solutions for exhibit control and data collection.</p>
+      
+      <p>His innovative approach to technology integration has enabled remote participation options and created immersive digital experiences that complement the physical exhibits, making chemistry accessible to broader audiences.</p>
+    `
+  },
+  'samarth': {
+    name: 'Samarth Jain',
+    role: 'Secretary',
+    imageLetter: 'S',
+    details: `
+      <p>Samarth Jain serves as Secretary, providing crucial organizational support and maintaining clear communication channels across all exhibition teams. His meticulous attention to detail ensures that documentation, scheduling, and resource allocation proceed smoothly.</p>
+      
+      <p>Samarth coordinates with external partners, manages participant registrations, and oversees the creation of educational materials distributed during the exhibition. His background in analytical chemistry brings precision to all administrative processes.</p>
+      
+      <p>Through his efforts, the exhibition maintains comprehensive records that support both current operations and future planning, while ensuring all stakeholders remain informed and engaged throughout the preparation process.</p>
+    `
+  },
+  'vansh': {
+    name: 'Vansh Mittal',
+    role: 'Secretary',
+    imageLetter: 'V',
+    details: `
+      <p>Vansh Mittal works alongside Samarth as Secretary, focusing on visitor engagement and educational outreach. His role encompasses managing public relations, coordinating with school groups, and developing accessible chemistry content.</p>
+      
+      <p>With strong communication skills and a passion for science education, Vansh has developed innovative approaches to making complex chemical concepts understandable and exciting for diverse audiences. He oversees the creation of multilingual materials and accessibility accommodations.</p>
+      
+      <p>His dedication to inclusive science communication has expanded the exhibition's reach and ensured that chemistry education remains engaging and accessible to visitors of all backgrounds and age groups.</p>
+    `
+  }
+};
+
+/* ----------------------------
+  Team Member Modal Functions
+-----------------------------*/
+function openTeamModal(memberId) {
+  const member = TEAM_MEMBERS[memberId];
+  if (!member) return;
+  
+  const modal = document.getElementById('teamModal');
+  const content = document.getElementById('teamModalContent');
+  
+  content.innerHTML = `
+    <div class="team-modal-image">
+      ${member.imageLetter}
+    </div>
+    <div class="team-modal-info">
+      <h2 style="font-size: 28px; font-weight: 900; color: var(--cyan); margin-bottom: 8px;">${member.name}</h2>
+      <div style="font-size: 18px; color: var(--muted); margin-bottom: 20px;">${member.role}</div>
+      <div style="color: rgba(230,247,255,0.9); line-height: 1.6; flex-grow: 1;">
+        ${member.details}
+      </div>
+      <div style="margin-top: 20px;">
+        <button class="btn btn-primary" onclick="playEnergySound()">Play Energy Sound</button>
+      </div>
+    </div>
+  `;
+  
+  modal.style.display = 'block';
+  document.body.style.overflow = 'hidden';
+  
+  // Add energy effect
+  const x = window.innerWidth / 2;
+  const y = window.innerHeight / 2;
+  createRipple(x, y, '#66e7ff', 800, 1100);
+  playEnergySound('pulse');
+}
+
+function closeTeamModal() {
+  const modal = document.getElementById('teamModal');
+  modal.style.display = 'none';
+  document.body.style.overflow = 'auto';
+}
+
+// Close modal when clicking outside content
+document.getElementById('teamModal').addEventListener('click', function(e) {
+  if (e.target === this) {
+    closeTeamModal();
+  }
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeTeamModal();
+  }
+});
 
 /* ----------------------------
   SPA data for exhibits & exchange (detailed, "extreme")
@@ -872,30 +1099,6 @@ function scrollSlider(dir){
   Bio overlay (small faded window for person/teacher)
 -----------------------------*/
 const BIOS = {
-  'arjun': {
-    name: 'Arjun Tosawad',
-    role: 'President',
-    bio: 'Arjun coordinates presentations and safety for large demonstrations. Focus areas include organic synthesis, green chemistry demos, and public-safety training for live experiments.',
-    fun: 'Fun fact: Arjun builds polymer models for interactive demos.'
-  },
-  'xxx': {
-    name: 'XXX',
-    role: 'Secretary',
-    bio: 'XXX handles documentation, scheduling and communications. Special interest in analytical workflows and visitor engagement.',
-    fun: 'Fun fact: XXX organizes data posters with clear visual storytelling.'
-  },
-  'yyy': {
-    name: 'YYY',
-    role: 'Vice President',
-    bio: 'YYY oversees fabrication and safety systems, with a focus on material chemistry and large-format exhibit design.',
-    fun: 'Fun fact: YYY prototypes 3D-printed reaction housings for demos.'
-  },
-  'zzz': {
-    name: 'ZZZ',
-    role: 'IT & Tech Head',
-    bio: 'ZZZ manages interactive displays, projection mapping, and the technical stack for the exhibition web and on-site installations.',
-    fun: 'Fun fact: ZZZ builds multi-projector mapping rigs for demos.'
-  },
   'sankalp': {
     name: 'Mr. Sankalp Maheshwari',
     role: 'Professor of Organic Chemistry',
