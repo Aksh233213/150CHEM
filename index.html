@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Chemistry Exhibition 2025 — Dark Electric (Energy Edition)</title>
 <script src="https://cdn.tailwindcss.com"></script>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3CradialGradient id='glow' cx='50%25' cy='50%25' r='50%25'%3E%3Cstop offset='0%25' stop-color='%2300d8ff' stop-opacity='1'/%3E%3Cstop offset='70%25' stop-color='%237c3aed' stop-opacity='0.8'/%3E%3Cstop offset='100%25' stop-color='%23050714' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='50' cy='50' r='40' fill='url(%23glow)'/%3E%3Ccircle cx='50' cy='50' r='15' fill='%2300d8ff'/%3E%3Ccircle cx='50' cy='50' r='5' fill='%23ffffff'/%3E%3C/svg%3E">
 <style>
   :root{
     --bg:#050714;
@@ -45,16 +46,19 @@
   .hero h1 { font-size:clamp(34px,6vw,64px); line-height:1.02; font-weight:900; background: linear-gradient(90deg,var(--cyan),var(--violet)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; letter-spacing:-0.02em; }
 
   /* canvas layers */
-  #bg-canvas, #ripple-canvas { position:absolute; inset:0; z-index:0; pointer-events:none; }
+  #bg-canvas, #ripple-canvas, #lightning-canvas { position:absolute; inset:0; z-index:0; pointer-events:none; }
+  #lightning-canvas { z-index: 1; }
 
   main { max-width:1200px; margin:56px auto 120px; padding:0 20px; position:relative; z-index:30; }
 
   /* panels and cards */
   .panel { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.03); border-radius:12px; padding:16px; box-shadow: 0 22px 48px rgba(2,6,23,0.55); }
   .slider{ display:flex; gap:18px; overflow-x:auto; scroll-snap-type:x mandatory; padding:22px 4px; -webkit-overflow-scrolling:touch; }
-  .slide{ min-width:72%; scroll-snap-align:center; border-radius:12px; overflow:hidden; transition:transform .25s ease, box-shadow .25s ease; background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.03); cursor:pointer; }
+  .slide{ min-width:72%; scroll-snap-align:center; border-radius:12px; overflow:hidden; transition:transform .25s ease, box-shadow .25s ease; background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.03); cursor:pointer; position: relative; }
   .slide:hover{ transform:translateY(-10px); box-shadow: 0 32px 80px rgba(2,6,23,0.6); }
-  .slide img{ width:100%; height:440px; object-fit:cover; display:block; filter: saturate(1.05) contrast(1.03); }
+  .slide img{ width:100%; height:440px; object-fit:cover; display:block; filter: saturate(1.05) contrast(1.03); transition: transform 0.5s ease; }
+  .slide:hover img { transform: scale(1.05); }
+  .slide-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(5,7,20,0.9), transparent); padding: 20px; color: white; }
 
   @media (max-width:900px){ .slide{ min-width:92%; } .slide img{ height:260px; } }
 
@@ -104,6 +108,25 @@
     font-size: 80px;
     font-weight: 900;
     color: #021226;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .team-modal-image::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      to bottom right,
+      rgba(255,255,255,0) 0%,
+      rgba(255,255,255,0.1) 50%,
+      rgba(255,255,255,0) 100%
+    );
+    transform: rotate(30deg);
+    animation: shimmer 3s infinite linear;
   }
   
   .team-modal-info {
@@ -177,9 +200,152 @@
   footer { text-align:center; color:rgba(230,247,255,0.6); padding-bottom:40px; margin-top:28px; }
 
   .muted{ color:var(--muted); }
+  
+  /* Audio Controls */
+  .audio-controls {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(5,7,20,0.7);
+    padding: 10px 15px;
+    border-radius: 30px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  
+  .audio-btn {
+    background: transparent;
+    border: none;
+    color: var(--cyan);
+    font-size: 20px;
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+  
+  .audio-btn:hover {
+    background: rgba(0,216,255,0.2);
+    transform: scale(1.1);
+  }
+  
+  .volume-slider {
+    width: 80px;
+    height: 4px;
+    -webkit-appearance: none;
+    background: rgba(255,255,255,0.2);
+    border-radius: 2px;
+    outline: none;
+  }
+  
+  .volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--cyan);
+    cursor: pointer;
+  }
+  
+  /* Lightning effect */
+  @keyframes lightning {
+    0% { opacity: 0; }
+    5% { opacity: 0.7; }
+    10% { opacity: 0.3; }
+    15% { opacity: 0.8; }
+    20% { opacity: 0; }
+    100% { opacity: 0; }
+  }
+  
+  .lightning {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.1) 0%, transparent 30%, transparent 70%, rgba(0,216,255,0.05) 100%);
+    pointer-events: none;
+    z-index: 5;
+    opacity: 0;
+    animation: lightning 0.5s ease-out;
+  }
+  
+  /* Enhanced exhibit images */
+  .exhibit-enhance {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+  }
+  
+  .exhibit-enhance::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(0,216,255,0.1) 0%, rgba(124,58,237,0.1) 100%);
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .exhibit-enhance:hover::before {
+    opacity: 1;
+  }
+  
+  /* Music visualizer */
+  .visualizer {
+    position: fixed;
+    bottom: 80px;
+    left: 20px;
+    width: 200px;
+    height: 40px;
+    display: flex;
+    align-items: flex-end;
+    gap: 2px;
+    z-index: 100;
+  }
+  
+  .visualizer-bar {
+    flex: 1;
+    background: linear-gradient(to top, var(--cyan), var(--violet));
+    border-radius: 2px 2px 0 0;
+    transition: height 0.1s ease;
+  }
 </style>
 </head>
 <body>
+
+<!-- Lightning Effect Overlay -->
+<div id="lightningOverlay" class="lightning"></div>
+
+<!-- Audio Controls -->
+<div class="audio-controls">
+  <button id="playBtn" class="audio-btn">▶</button>
+  <button id="pauseBtn" class="audio-btn">⏸</button>
+  <input type="range" id="volumeSlider" class="volume-slider" min="0" max="1" step="0.1" value="0.5">
+  <div class="visualizer" id="visualizer">
+    <div class="visualizer-bar"></div>
+    <div class="visualizer-bar"></div>
+    <div class="visualizer-bar"></div>
+    <div class="visualizer-bar"></div>
+    <div class="visualizer-bar"></div>
+    <div class="visualizer-bar"></div>
+    <div class="visualizer-bar"></div>
+    <div class="visualizer-bar"></div>
+    <div class="visualizer-bar"></div>
+    <div class="visualizer-bar"></div>
+  </div>
+</div>
 
 <!-- NAV -->
 <nav>
@@ -208,6 +374,7 @@
 <header id="home" class="hero relative">
   <canvas id="bg-canvas"></canvas>
   <canvas id="ripple-canvas"></canvas>
+  <canvas id="lightning-canvas"></canvas>
 
   <div style="z-index:40; max-width:1100px; padding:28px;">
     <h1 class="shimmer">CHEMISTRY EXHIBITION <span style="display:block;font-size:18px;color:rgba(230,247,255,0.75);font-weight:700;margin-top:8px">2025 — From molecules to materials</span></h1>
@@ -350,49 +517,49 @@
     </div>
 
     <div class="slider mt-6" id="slider">
-      <div class="slide" tabindex="0" role="button" onclick="triggerEnergyAndOpen('chem-space')" onkeypress="if(event.key==='Enter') triggerEnergyAndOpen('chem-space')">
+      <div class="slide exhibit-enhance" tabindex="0" role="button" onclick="triggerEnergyAndOpen('chem-space')" onkeypress="if(event.key==='Enter') triggerEnergyAndOpen('chem-space')">
         <img src="https://images.unsplash.com/photo-1581091870623-3f40b7b1c3a2?auto=format&fit=crop&w=1800&q=80" alt="Chemistry in space microgravity lab">
-        <div style="padding:12px">
+        <div class="slide-overlay">
           <div style="font-weight:900;color:#e6f7ff">Chemistry in Space</div>
           <div class="muted" style="margin-top:6px">Astrochemistry: microgravity reactions, propellants and life-support systems.</div>
         </div>
       </div>
 
-      <div class="slide" tabindex="0" role="button" onclick="triggerEnergyAndOpen('green-chemistry')" onkeypress="if(event.key==='Enter') triggerEnergyAndOpen('green-chemistry')">
+      <div class="slide exhibit-enhance" tabindex="0" role="button" onclick="triggerEnergyAndOpen('green-chemistry')" onkeypress="if(event.key==='Enter') triggerEnergyAndOpen('green-chemistry')">
         <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1800&q=80" alt="green chemistry lab">
-        <div style="padding:12px">
+        <div class="slide-overlay">
           <div style="font-weight:900;color:#e6f7ff">Green Chemistry Revolution</div>
           <div class="muted" style="margin-top:6px">Sustainable syntheses, recyclable catalysts and biodegradable polymers.</div>
         </div>
       </div>
 
-      <div class="slide" tabindex="0" role="button" onclick="triggerEnergyAndOpen('nanotech')" onkeypress="if(event.key==='Enter') triggerEnergyAndOpen('nanotech')">
+      <div class="slide exhibit-enhance" tabindex="0" role="button" onclick="triggerEnergyAndOpen('nanotech')" onkeypress="if(event.key==='Enter') triggerEnergyAndOpen('nanotech')">
         <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1800&q=80" alt="nanotechnology">
-        <div style="padding:12px">
+        <div class="slide-overlay">
           <div style="font-weight:900;color:#e6f7ff">Nanotechnology in Medicine</div>
           <div class="muted" style="margin-top:6px">Nanoparticles, targeted delivery and diagnostics.</div>
         </div>
       </div>
 
-      <div class="slide" tabindex="0" role="button" onclick="triggerEnergyAndOpen('forensic')" onkeypress="if(event.key==='Enter') triggerEnergyAndOpen('forensic')">
+      <div class="slide exhibit-enhance" tabindex="0" role="button" onclick="triggerEnergyAndOpen('forensic')" onkeypress="if(event.key==='Enter') triggerEnergyAndOpen('forensic')">
         <img src="https://images.unsplash.com/photo-1602524815744-6e2b4d3df5aa?auto=format&fit=crop&w=1800&q=80" alt="forensic chemistry lab">
-        <div style="padding:12px">
+        <div class="slide-overlay">
           <div style="font-weight:900;color:#e6f7ff">Forensic & Analytical Chemistry</div>
           <div class="muted" style="margin-top:6px">Chromatography, mass spec and crime-scene simulation.</div>
         </div>
       </div>
 
-      <div class="slide" tabindex="0" role="button" onclick="triggerEnergyAndOpen('polymer')" onkeypress="if(event.key==='Enter') triggerEnergyAndOpen('polymer')">
+      <div class="slide exhibit-enhance" tabindex="0" role="button" onclick="triggerEnergyAndOpen('polymer')" onkeypress="if(event.key==='Enter') triggerEnergyAndOpen('polymer')">
         <img src="https://images.unsplash.com/photo-1517976487492-0c3b6f8d8f2d?auto=format&fit=crop&w=1800&q=80" alt="polymers">
-        <div style="padding:12px">
+        <div class="slide-overlay">
           <div style="font-weight:900;color:#e6f7ff">Polymer Art & Smart Materials</div>
           <div class="muted" style="margin-top:6px">Shape-memory polymers and wearable chemistry.</div>
         </div>
       </div>
 
-      <div class="slide" tabindex="0" role="button" onclick="triggerEnergyAndOpen('fireworks')" onkeypress="if(event.key==='Enter') triggerEnergyAndOpen('fireworks')">
+      <div class="slide exhibit-enhance" tabindex="0" role="button" onclick="triggerEnergyAndOpen('fireworks')" onkeypress="if(event.key==='Enter') triggerEnergyAndOpen('fireworks')">
         <img src="https://images.unsplash.com/photo-1509395176047-4a66953fd231?auto=format&fit=crop&w=1800&q=80" alt="fireworks chemistry">
-        <div style="padding:12px">
+        <div class="slide-overlay">
           <div style="font-weight:900;color:#e6f7ff">The Chemistry of Fireworks</div>
           <div class="muted" style="margin-top:6px">Metal salts and oxidizers for color (safety emphasized).</div>
         </div>
@@ -490,6 +657,124 @@
 </div>
 
 <script>
+/* ----------------------------
+  Background Music System
+-----------------------------*/
+let backgroundMusic = null;
+let audioContext = null;
+let analyser = null;
+let dataArray = null;
+let bufferLength = null;
+let isPlaying = false;
+
+function initAudio() {
+  // Create audio context
+  audioContext = new (window.AudioContext || window.webkitAudioContext)();
+  
+  // Create analyser for visualizer
+  analyser = audioContext.createAnalyser();
+  analyser.fftSize = 256;
+  bufferLength = analyser.frequencyBinCount;
+  dataArray = new Uint8Array(bufferLength);
+  
+  // Create audio element
+  backgroundMusic = new Audio();
+  backgroundMusic.loop = true;
+  backgroundMusic.volume = 0.5;
+  
+  // Use a subtle ambient electronic track (simulated)
+  // In a real implementation, you would load an actual audio file
+  backgroundMusic.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQ..."; // Placeholder
+  
+  // Create source and connect to analyser and destination
+  const source = audioContext.createMediaElementSource(backgroundMusic);
+  source.connect(analyser);
+  analyser.connect(audioContext.destination);
+  
+  // Set up visualizer animation
+  animateVisualizer();
+}
+
+function animateVisualizer() {
+  if (!analyser) return;
+  
+  requestAnimationFrame(animateVisualizer);
+  analyser.getByteFrequencyData(dataArray);
+  
+  const visualizer = document.getElementById('visualizer');
+  if (!visualizer) return;
+  
+  const bars = visualizer.querySelectorAll('.visualizer-bar');
+  for (let i = 0; i < bars.length; i++) {
+    const value = dataArray[i * 2] / 255;
+    const height = Math.max(5, value * 40);
+    bars[i].style.height = `${height}px`;
+  }
+}
+
+function playBackgroundMusic() {
+  if (!backgroundMusic) {
+    initAudio();
+  }
+  
+  if (audioContext.state === 'suspended') {
+    audioContext.resume();
+  }
+  
+  backgroundMusic.play();
+  isPlaying = true;
+  document.getElementById('playBtn').style.display = 'none';
+  document.getElementById('pauseBtn').style.display = 'flex';
+}
+
+function pauseBackgroundMusic() {
+  if (backgroundMusic) {
+    backgroundMusic.pause();
+    isPlaying = false;
+    document.getElementById('playBtn').style.display = 'flex';
+    document.getElementById('pauseBtn').style.display = 'none';
+  }
+}
+
+function setVolume(value) {
+  if (backgroundMusic) {
+    backgroundMusic.volume = value;
+  }
+}
+
+// Audio control event listeners
+document.getElementById('playBtn').addEventListener('click', playBackgroundMusic);
+document.getElementById('pauseBtn').addEventListener('click', pauseBackgroundMusic);
+document.getElementById('volumeSlider').addEventListener('input', (e) => {
+  setVolume(e.target.value);
+});
+
+/* ----------------------------
+  Lightning Effect System
+-----------------------------*/
+function triggerLightning() {
+  const lightning = document.getElementById('lightningOverlay');
+  lightning.style.animation = 'none';
+  setTimeout(() => {
+    lightning.style.animation = 'lightning 0.5s ease-out';
+  }, 10);
+  
+  // Random lightning strikes
+  const strikes = Math.floor(Math.random() * 3) + 1;
+  for (let i = 0; i < strikes; i++) {
+    setTimeout(() => {
+      triggerLightning();
+    }, (i + 1) * 200);
+  }
+}
+
+// Random lightning strikes
+setInterval(() => {
+  if (Math.random() < 0.3) { // 30% chance every 10 seconds
+    triggerLightning();
+  }
+}, 10000);
+
 /* ----------------------------
   Particle background canvas
 -----------------------------*/
@@ -646,27 +931,27 @@ function hexToRgba(hex, a){
 
 /* WebAudio: small sonic palette for energy wave + hum */
 const AudioCtx = window.AudioContext || window.webkitAudioContext;
-let audioCtx = null;
+let energyAudioCtx = null;
 function ensureAudio(){
-  if(!audioCtx) audioCtx = new AudioCtx();
+  if(!energyAudioCtx) energyAudioCtx = new AudioCtx();
 }
 function playEnergySound(type='pulse'){
   ensureAudio();
-  if(!audioCtx) return;
-  const now = audioCtx.currentTime;
+  if(!energyAudioCtx) return;
+  const now = energyAudioCtx.currentTime;
   // master gain
-  const gain = audioCtx.createGain(); gain.connect(audioCtx.destination); gain.gain.value = 0.0001;
+  const gain = energyAudioCtx.createGain(); gain.connect(energyAudioCtx.destination); gain.gain.value = 0.0001;
   // small fade-in to avoid clicks
   gain.gain.linearRampToValueAtTime(0.18, now + 0.01);
   // a short metallic chime + sub bass swoop
   if(type === 'pulse'){
     // metallic noise-ish with bandpass filter
-    const o = audioCtx.createOscillator();
+    const o = energyAudioCtx.createOscillator();
     o.type = 'triangle';
     o.frequency.setValueAtTime(520, now);
-    const g2 = audioCtx.createGain(); g2.gain.value = 0.0;
+    const g2 = energyAudioCtx.createGain(); g2.gain.value = 0.0;
     o.connect(g2);
-    const hp = audioCtx.createBiquadFilter(); hp.type='highpass'; hp.frequency.value=220;
+    const hp = energyAudioCtx.createBiquadFilter(); hp.type='highpass'; hp.frequency.value=220;
     g2.connect(hp); hp.connect(gain);
     o.start(now);
     // envelope
@@ -677,10 +962,10 @@ function playEnergySound(type='pulse'){
     o.stop(now + 0.9);
   }
   // sub-swoop
-  const sub = audioCtx.createOscillator();
+  const sub = energyAudioCtx.createOscillator();
   sub.type = 'sine';
   sub.frequency.setValueAtTime(120, now);
-  const subG = audioCtx.createGain(); subG.gain.value = 0.0;
+  const subG = energyAudioCtx.createGain(); subG.gain.value = 0.0;
   sub.connect(subG); subG.connect(gain);
   subG.gain.setValueAtTime(0.0001, now);
   subG.gain.exponentialRampToValueAtTime(0.12, now + 0.03);
@@ -689,7 +974,7 @@ function playEnergySound(type='pulse'){
   sub.start(now); sub.stop(now + 0.9);
 
   // final tiny click
-  setTimeout(()=> { gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.02); }, 800);
+  setTimeout(()=> { gain.gain.exponentialRampToValueAtTime(0.0001, energyAudioCtx.currentTime + 0.02); }, 800);
 }
 
 /* ----------------------------
@@ -792,6 +1077,7 @@ function openTeamModal(memberId) {
   const y = window.innerHeight / 2;
   createRipple(x, y, '#66e7ff', 800, 1100);
   playEnergySound('pulse');
+  triggerLightning();
 }
 
 function closeTeamModal() {
@@ -1054,6 +1340,7 @@ function renderPage(key){
   `;
   // small entrance animation for placeholders (if any)
   detailView.scrollIntoView({behavior:'smooth', block:'start'});
+  triggerLightning();
 }
 
 function goBack(){
@@ -1081,6 +1368,7 @@ function triggerEnergyAndOpen(key){
   const y = window.innerHeight * 0.28;
   createRipple(x, y, '#66e7ff', 800, 1100);
   playEnergySound('pulse');
+  triggerLightning();
   setTimeout(()=> renderPage(key), 380);
 }
 
@@ -1148,6 +1436,7 @@ function openBio(key){
   const x = window.innerWidth - 120, y = window.innerHeight - 120;
   createRipple(x, y, '#b79bff', 420, 900);
   playEnergySound('pulse');
+  triggerLightning();
 }
 
 function closeBio(){
@@ -1213,6 +1502,9 @@ window.addEventListener('DOMContentLoaded', ()=>{
     // reveal in sequence
     document.querySelectorAll('.reveal').forEach((el,i)=> setTimeout(()=> el.classList.add('show'), i*80));
   }
+  
+  // Initialize audio system
+  initAudio();
 });
 
 /* Ensure audio context created only on user gesture (some browsers block auto audio if not) */
