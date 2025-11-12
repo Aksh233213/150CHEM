@@ -46,8 +46,8 @@
   .hero h1 { font-size:clamp(34px,6vw,64px); line-height:1.02; font-weight:900; background: linear-gradient(90deg,var(--cyan),var(--violet)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; letter-spacing:-0.02em; }
 
   /* canvas layers */
-  #bg-canvas, #ripple-canvas, #lightning-canvas { position:absolute; inset:0; z-index:0; pointer-events:none; }
-  #lightning-canvas { z-index: 1; }
+  #bg-canvas, #ripple-canvas, #spark-canvas { position:absolute; inset:0; z-index:0; pointer-events:none; }
+  #spark-canvas { z-index: 5; }
 
   main { max-width:1200px; margin:56px auto 120px; padding:0 20px; position:relative; z-index:30; }
 
@@ -255,27 +255,33 @@
     cursor: pointer;
   }
   
-  /* Lightning effect */
-  @keyframes lightning {
-    0% { opacity: 0; }
-    5% { opacity: 0.7; }
-    10% { opacity: 0.3; }
-    15% { opacity: 0.8; }
-    20% { opacity: 0; }
-    100% { opacity: 0; }
+  /* Electric Spark Effect */
+  .spark {
+    position: fixed;
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0;
   }
   
-  .lightning {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, rgba(255,255,255,0.1) 0%, transparent 30%, transparent 70%, rgba(0,216,255,0.05) 100%);
-    pointer-events: none;
-    z-index: 5;
-    opacity: 0;
-    animation: lightning 0.5s ease-out;
+  .spark-line {
+    position: absolute;
+    background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+    transform-origin: left center;
+    box-shadow: 0 0 10px var(--cyan), 0 0 20px var(--cyan);
+  }
+  
+  .spark-particle {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--cyan);
+    box-shadow: 0 0 8px var(--cyan), 0 0 16px var(--cyan);
+  }
+  
+  @keyframes sparkAnimation {
+    0% { opacity: 0; transform: scale(0.5); }
+    20% { opacity: 1; transform: scale(1); }
+    80% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(1.2); }
   }
   
   /* Enhanced exhibit images */
@@ -325,8 +331,8 @@
 </head>
 <body>
 
-<!-- Lightning Effect Overlay -->
-<div id="lightningOverlay" class="lightning"></div>
+<!-- Spark Effect Container -->
+<div id="sparkContainer"></div>
 
 <!-- Audio Controls -->
 <div class="audio-controls">
@@ -374,7 +380,7 @@
 <header id="home" class="hero relative">
   <canvas id="bg-canvas"></canvas>
   <canvas id="ripple-canvas"></canvas>
-  <canvas id="lightning-canvas"></canvas>
+  <canvas id="spark-canvas"></canvas>
 
   <div style="z-index:40; max-width:1100px; padding:28px;">
     <h1 class="shimmer">CHEMISTRY EXHIBITION <span style="display:block;font-size:18px;color:rgba(230,247,255,0.75);font-weight:700;margin-top:8px">2025 — From molecules to materials</span></h1>
@@ -518,7 +524,7 @@
 
     <div class="slider mt-6" id="slider">
       <div class="slide exhibit-enhance" tabindex="0" role="button" onclick="triggerEnergyAndOpen('chem-space')" onkeypress="if(event.key==='Enter') triggerEnergyAndOpen('chem-space')">
-        <img src="https://images.unsplash.com/photo-1581091870623-3f40b7b1c3a2?auto=format&fit=crop&w=1800&q=80" alt="Chemistry in space microgravity lab">
+        <img src="https://ls.wisc.edu/assets/slideshow/_645x415_crop_center-center_none_ns/chemistry-in-space-FD-Getty-Images-645x415.jpg" alt="Chemistry in space microgravity lab">
         <div class="slide-overlay">
           <div style="font-weight:900;color:#e6f7ff">Chemistry in Space</div>
           <div class="muted" style="margin-top:6px">Astrochemistry: microgravity reactions, propellants and life-support systems.</div>
@@ -526,23 +532,15 @@
       </div>
 
       <div class="slide exhibit-enhance" tabindex="0" role="button" onclick="triggerEnergyAndOpen('green-chemistry')" onkeypress="if(event.key==='Enter') triggerEnergyAndOpen('green-chemistry')">
-        <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1800&q=80" alt="green chemistry lab">
+        <img src="https://www.pumpsandsystems.com/sites/default/files/2023-10/CS_Mills-Winfield_IMG1_980x400.jpg" alt="green chemistry lab">
         <div class="slide-overlay">
           <div style="font-weight:900;color:#e6f7ff">Green Chemistry Revolution</div>
           <div class="muted" style="margin-top:6px">Sustainable syntheses, recyclable catalysts and biodegradable polymers.</div>
         </div>
       </div>
 
-      <div class="slide exhibit-enhance" tabindex="0" role="button" onclick="triggerEnergyAndOpen('nanotech')" onkeypress="if(event.key==='Enter') triggerEnergyAndOpen('nanotech')">
-        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1800&q=80" alt="nanotechnology">
-        <div class="slide-overlay">
-          <div style="font-weight:900;color:#e6f7ff">Nanotechnology in Medicine</div>
-          <div class="muted" style="margin-top:6px">Nanoparticles, targeted delivery and diagnostics.</div>
-        </div>
-      </div>
-
       <div class="slide exhibit-enhance" tabindex="0" role="button" onclick="triggerEnergyAndOpen('forensic')" onkeypress="if(event.key==='Enter') triggerEnergyAndOpen('forensic')">
-        <img src="https://images.unsplash.com/photo-1602524815744-6e2b4d3df5aa?auto=format&fit=crop&w=1800&q=80" alt="forensic chemistry lab">
+        <img src="https://forensicstats.org/wp-content/uploads/2017/11/forenisc-scientist-in-lab.jpg?ref=utopiaeducators.com" alt="forensic chemistry lab">
         <div class="slide-overlay">
           <div style="font-weight:900;color:#e6f7ff">Forensic & Analytical Chemistry</div>
           <div class="muted" style="margin-top:6px">Chromatography, mass spec and crime-scene simulation.</div>
@@ -550,7 +548,7 @@
       </div>
 
       <div class="slide exhibit-enhance" tabindex="0" role="button" onclick="triggerEnergyAndOpen('polymer')" onkeypress="if(event.key==='Enter') triggerEnergyAndOpen('polymer')">
-        <img src="https://images.unsplash.com/photo-1517976487492-0c3b6f8d8f2d?auto=format&fit=crop&w=1800&q=80" alt="polymers">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTxs9FWaYFhg_0JrjJ7hoZwN5mECxHK9Ss_Q&s" alt="polymers">
         <div class="slide-overlay">
           <div style="font-weight:900;color:#e6f7ff">Polymer Art & Smart Materials</div>
           <div class="muted" style="margin-top:6px">Shape-memory polymers and wearable chemistry.</div>
@@ -558,7 +556,7 @@
       </div>
 
       <div class="slide exhibit-enhance" tabindex="0" role="button" onclick="triggerEnergyAndOpen('fireworks')" onkeypress="if(event.key==='Enter') triggerEnergyAndOpen('fireworks')">
-        <img src="https://images.unsplash.com/photo-1509395176047-4a66953fd231?auto=format&fit=crop&w=1800&q=80" alt="fireworks chemistry">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS86E87cUmOPe4W_-sJmfdTYQ20RPRffeXelQ&s" alt="fireworks chemistry">
         <div class="slide-overlay">
           <div style="font-weight:900;color:#e6f7ff">The Chemistry of Fireworks</div>
           <div class="muted" style="margin-top:6px">Metal salts and oxidizers for color (safety emphasized).</div>
@@ -658,6 +656,73 @@
 
 <script>
 /* ----------------------------
+  Electric Spark Effect System
+-----------------------------*/
+function createElectricSpark(startX, startY, endX, endY) {
+  const sparkContainer = document.getElementById('sparkContainer');
+  
+  // Create main spark element
+  const spark = document.createElement('div');
+  spark.className = 'spark';
+  spark.style.left = startX + 'px';
+  spark.style.top = startY + 'px';
+  
+  // Calculate distance and angle
+  const dx = endX - startX;
+  const dy = endY - startY;
+  const distance = Math.sqrt(dx * dx + dy * dy);
+  const angle = Math.atan2(dy, dx) * (180 / Math.PI);
+  
+  // Create main spark line
+  const sparkLine = document.createElement('div');
+  sparkLine.className = 'spark-line';
+  sparkLine.style.width = distance + 'px';
+  sparkLine.style.height = '2px';
+  sparkLine.style.transform = `rotate(${angle}deg)`;
+  
+  // Add particles along the spark line
+  const particleCount = Math.floor(distance / 15);
+  for (let i = 0; i < particleCount; i++) {
+    const particle = document.createElement('div');
+    particle.className = 'spark-particle';
+    const pos = (i / particleCount) * distance;
+    particle.style.left = pos + 'px';
+    particle.style.top = '-1px';
+    particle.style.width = Math.random() * 4 + 2 + 'px';
+    particle.style.height = particle.style.width;
+    particle.style.animation = `sparkAnimation ${Math.random() * 200 + 300}ms ease-out forwards`;
+    sparkLine.appendChild(particle);
+  }
+  
+  spark.appendChild(sparkLine);
+  sparkContainer.appendChild(spark);
+  
+  // Animate the spark
+  spark.style.animation = `sparkAnimation 500ms ease-out forwards`;
+  
+  // Remove spark after animation
+  setTimeout(() => {
+    spark.remove();
+  }, 500);
+}
+
+function triggerElectricSpark(element) {
+  const rect = element.getBoundingClientRect();
+  
+  // Create multiple sparks from different sides
+  const sides = [
+    { startX: rect.left, startY: rect.top, endX: rect.right, endY: rect.top }, // Top
+    { startX: rect.right, startY: rect.top, endX: rect.right, endY: rect.bottom }, // Right
+    { startX: rect.left, startY: rect.bottom, endX: rect.right, endY: rect.bottom }, // Bottom
+    { startX: rect.left, startY: rect.top, endX: rect.left, endY: rect.bottom } // Left
+  ];
+  
+  sides.forEach(side => {
+    createElectricSpark(side.startX, side.startY, side.endX, side.endY);
+  });
+}
+
+/* ----------------------------
   Background Music System
 -----------------------------*/
 let backgroundMusic = null;
@@ -748,32 +813,6 @@ document.getElementById('pauseBtn').addEventListener('click', pauseBackgroundMus
 document.getElementById('volumeSlider').addEventListener('input', (e) => {
   setVolume(e.target.value);
 });
-
-/* ----------------------------
-  Lightning Effect System
------------------------------*/
-function triggerLightning() {
-  const lightning = document.getElementById('lightningOverlay');
-  lightning.style.animation = 'none';
-  setTimeout(() => {
-    lightning.style.animation = 'lightning 0.5s ease-out';
-  }, 10);
-  
-  // Random lightning strikes
-  const strikes = Math.floor(Math.random() * 3) + 1;
-  for (let i = 0; i < strikes; i++) {
-    setTimeout(() => {
-      triggerLightning();
-    }, (i + 1) * 200);
-  }
-}
-
-// Random lightning strikes
-setInterval(() => {
-  if (Math.random() < 0.3) { // 30% chance every 10 seconds
-    triggerLightning();
-  }
-}, 10000);
 
 /* ----------------------------
   Particle background canvas
@@ -1077,7 +1116,10 @@ function openTeamModal(memberId) {
   const y = window.innerHeight / 2;
   createRipple(x, y, '#66e7ff', 800, 1100);
   playEnergySound('pulse');
-  triggerLightning();
+  
+  // Add electric spark effect to modal
+  const modalRect = modal.getBoundingClientRect();
+  triggerElectricSpark(modal);
 }
 
 function closeTeamModal() {
@@ -1148,28 +1190,6 @@ const PAGES = {
 
       <h4 style="margin-top:12px;font-weight:800;color:var(--violet)">Impact</h4>
       <p class="muted">Quantified reductions in solvent use and waste generation, with practical suggestions for laboratory adoption of green protocols.</p>
-    `
-  },
-
-  'nanotech': {
-    title: 'Nanotechnology in Medicine',
-    subtitle: 'Synthesis, targeting, imaging — detailed experimental notes & characterization',
-    content: `
-      <h3 style="font-weight:800;color:var(--cyan)">Overview</h3>
-      <p class="muted">Our nanotech exhibit focuses on nanoparticle design for targeted drug delivery, imaging contrast agents, and controlled release kinetics. Included: synthesis protocols, DLS/TEM micrographs (placeholders), and biodistribution modeling summaries.</p>
-
-      <h4 style="margin-top:12px;font-weight:800;color:var(--violet)">Key experiments</h4>
-      <p class="muted">• <strong>PEGylated liposomal systems:</strong> surface modification to extend circulation half-life; release profiles shown conceptually.</p>
-      <p class="muted">• <strong>Targeting ligands:</strong> small molecule vs peptide-based targeting and their receptor-mediated uptake efficiencies in cell-line assays.</p>
-      <p class="muted">• <strong>Characterization:</strong> TEM micrographs, size distributions (DLS), zeta-potential analysis and basic cytotoxicity panels.</p>
-
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px">
-        <div class="panel photo-placeholder">TEM micrograph placeholder</div>
-        <div class="panel photo-placeholder">Particle size chart placeholder</div>
-      </div>
-
-      <h4 style="margin-top:12px;font-weight:800;color:var(--violet)">Clinical relevance</h4>
-      <p class="muted">Design choices directly influence pharmacokinetics; ongoing studies emphasize safe-by-design approaches and translational pathways for clinical use.</p>
     `
   },
 
@@ -1340,7 +1360,10 @@ function renderPage(key){
   `;
   // small entrance animation for placeholders (if any)
   detailView.scrollIntoView({behavior:'smooth', block:'start'});
-  triggerLightning();
+  
+  // Add electric spark effect to detail view
+  const detailRect = detailView.getBoundingClientRect();
+  triggerElectricSpark(detailView);
 }
 
 function goBack(){
@@ -1368,7 +1391,13 @@ function triggerEnergyAndOpen(key){
   const y = window.innerHeight * 0.28;
   createRipple(x, y, '#66e7ff', 800, 1100);
   playEnergySound('pulse');
-  triggerLightning();
+  
+  // Add electric spark effect to the clicked element
+  const clickedElement = event.target.closest('.slide, .person');
+  if (clickedElement) {
+    triggerElectricSpark(clickedElement);
+  }
+  
   setTimeout(()=> renderPage(key), 380);
 }
 
@@ -1436,7 +1465,9 @@ function openBio(key){
   const x = window.innerWidth - 120, y = window.innerHeight - 120;
   createRipple(x, y, '#b79bff', 420, 900);
   playEnergySound('pulse');
-  triggerLightning();
+  
+  // Add electric spark effect to bio overlay
+  triggerElectricSpark(el);
 }
 
 function closeBio(){
