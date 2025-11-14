@@ -477,7 +477,7 @@
       </div>
 
       <div class="panel person" tabindex="0" role="button" onclick="openBio('sudeep')" onkeypress="if(event.key==='Enter') openBio('sudeep')">
-        <div style="font-weight:900;color:var(--cyan)">Mr. Sudeep XYZ</div>
+        <div style="font-weight:900;color:var(--cyan)">Mr. Sudeep Chaubey </div>
         <div class="muted" style="margin-top:6px">Lecturer — Physical & Analytical Chemistry</div>
         <p class="muted" style="margin-top:8px">Leads forensic chemistry demos and spectroscopy workshops.</p>
       </div>
@@ -486,11 +486,6 @@
 
   <!-- EXHIBITS -->
   <section id="exhibits" class="mb-12 reveal">
-    <div style="display:flex;justify-content:space-between;align-items:center">
-      <div>
-        <h2 style="font-size:22px;font-weight:900;color:#e6f7ff">Featured Exhibits</h2>
-        <div class="muted" style="margin-top:6px">Click or press Enter to open the exhibit page (same tab). Energy wave + audio will play during the transition.</div>
-      </div>
       <div style="display:flex;gap:10px">
         <button onclick="scrollSlider(-1)" class="px-3 py-2 rounded bg-white/5">Prev</button>
         <button onclick="scrollSlider(1)" class="px-3 py-2 rounded" style="background:var(--btn-bg);color:var(--btn-text)">Next</button>
@@ -942,7 +937,6 @@ function hexToRgba(hex, a){
   }
   return hex;
 }
-
 /* WebAudio: small sonic palette for energy wave + hum */
 const AudioCtx = window.AudioContext || window.webkitAudioContext;
 let energyAudioCtx = null;
@@ -1380,7 +1374,7 @@ const BIOS = {
     fun: 'Fun fact: Ankita runs a microscopy club for undergraduates.'
   },
   'sudeep': {
-    name: 'Mr. Sudeep XYZ',
+    name: 'Mr. Sudeep Chaubey',
     role: 'Lecturer — Physical & Analytical Chemistry',
     bio: 'Mr. Sudeep leads forensic demonstrations and spectroscopy workshops, with an emphasis on analytical rigor and hands-on data interpretation.',
     fun: 'Fun fact: Sudeep designs mini forensic puzzles for visitors.'
