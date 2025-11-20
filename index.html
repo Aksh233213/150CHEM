@@ -561,6 +561,187 @@
       </div>
     </div>
   </section>
+<!-- EXPERIMENTS & CHALLENGES -->
+<section id="experiments" class="mb-12 reveal">
+  <h2 style="font-size:22px;font-weight:900;color:#e6f7ff">Experiments & Challenges</h2>
+  <div class="muted" style="margin-top:6px">
+    Click any experiment or challenge to learn more and meet the student presenters!
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:18px;">
+    <!-- Metal Display -->
+    <div class="panel person" tabindex="0" role="button" onclick="openExperimentModal('metal')" onkeypress="if(event.key==='Enter') openExperimentModal('metal')">
+      <div style="display:flex;align-items:center;gap:14px;">
+        <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=120&q=80" alt="Metals" style="width:56px;height:56px;border-radius:12px;object-fit:cover;">
+        <div>
+          <div style="font-weight:900;color:#e6f7ff">Metal Display</div>
+          <div class="muted" style="margin-top:4px">Shaurya</div>
+        </div>
+      </div>
+    </div>
+    <!-- Chromatography -->
+    <div class="panel person" tabindex="0" role="button" onclick="openExperimentModal('chromatography')" onkeypress="if(event.key==='Enter') openExperimentModal('chromatography')">
+      <div style="display:flex;align-items:center;gap:14px;">
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=120&q=80" alt="Chromatography" style="width:56px;height:56px;border-radius:12px;object-fit:cover;">
+        <div>
+          <div style="font-weight:900;color:#e6f7ff">Chromatography</div>
+          <div class="muted" style="margin-top:4px">Riddhiman</div>
+        </div>
+      </div>
+    </div>
+    <!-- Burning Balloon Challenge -->
+    <div class="panel person" tabindex="0" role="button" onclick="openExperimentModal('balloon')" onkeypress="if(event.key==='Enter') openExperimentModal('balloon')">
+      <div style="display:flex;align-items:center;gap:14px;">
+        <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=120&q=80" alt="Balloon Challenge" style="width:56px;height:56px;border-radius:12px;object-fit:cover;">
+        <div>
+          <div style="font-weight:900;color:#e6f7ff">Burning & Bursting Balloon</div>
+          <div class="muted" style="margin-top:4px">Vedant</div>
+        </div>
+      </div>
+    </div>
+    <!-- PH with Invisible Ink -->
+    <div class="panel person" tabindex="0" role="button" onclick="openExperimentModal('ink')" onkeypress="if(event.key==='Enter') openExperimentModal('ink')">
+      <div style="display:flex;align-items:center;gap:14px;">
+        <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=120&q=80" alt="Invisible Ink" style="width:56px;height:56px;border-radius:12px;object-fit:cover;">
+        <div>
+          <div style="font-weight:900;color:#e6f7ff">PH with Invisible Ink</div>
+          <div class="muted" style="margin-top:4px">Vihaan</div>
+        </div>
+      </div>
+    </div>
+    <!-- Caramelization -->
+    <div class="panel person" tabindex="0" role="button" onclick="openExperimentModal('caramel')" onkeypress="if(event.key==='Enter') openExperimentModal('caramel')">
+      <div style="display:flex;align-items:center;gap:14px;">
+        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=120&q=80" alt="Caramelization" style="width:56px;height:56px;border-radius:12px;object-fit:cover;">
+        <div>
+          <div style="font-weight:900;color:#e6f7ff">Caramelization</div>
+          <div class="muted" style="margin-top:4px">Arjun, Pranit, Ridhik</div>
+        </div>
+      </div>
+    </div>
+    <!-- Pricking Balloon & Floating Biscuit -->
+    <div class="panel person" tabindex="0" role="button" onclick="openExperimentModal('biscuit')" onkeypress="if(event.key==='Enter') openExperimentModal('biscuit')">
+      <div style="display:flex;align-items:center;gap:14px;">
+        <img src="https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=120&q=80" alt="Floating Biscuit" style="width:56px;height:56px;border-radius:12px;object-fit:cover;">
+        <div>
+          <div style="font-weight:900;color:#e6f7ff">Pricking Balloon & Floating Biscuit</div>
+          <div class="muted" style="margin-top:4px">Heril</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Experiment Modal -->
+<div id="experimentModal" style="display:none;position:fixed;top:1cm;left:1cm;right:1cm;bottom:1cm;z-index:300;background:linear-gradient(135deg,rgba(12,19,32,0.97),rgba(5,7,20,0.98));border-radius:16px;border:1px solid rgba(255,255,255,0.08);box-shadow:0 25px 50px rgba(0,0,0,0.5);padding:32px;overflow-y:auto;">
+  <button onclick="closeExperimentModal()" style="position:absolute;top:24px;right:24px;background:rgba(255,255,255,0.1);border:none;color:white;width:40px;height:40px;border-radius:50%;font-size:22px;cursor:pointer;">×</button>
+  <div id="experimentModalContent"></div>
+</div>
+
+<script>
+// filepath: c:\Users\Aksh\Documents\Code\.html
+const EXPERIMENTS = {
+  metal: {
+    title: "Metal Display",
+    img: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=320&q=80",
+    presenter: "Shaurya",
+    details: `
+      <p>Look at various metals with their different properties and their mark on history. The display will be showcasing different metals, in this discussion parents can engage with the students and ask them questions about the showcased material. This gives insight about uses and the importance of metal in our day-to-day life, and the lives of people long lost in history.</p>
+      <h4 style="margin-top:12px;font-weight:800;color:var(--cyan)">About Shaurya</h4>
+      <p>Shaurya is a student of grade 9 who will engage in a discussion about metals in a fun and interactive way. Beware he is a menace.</p>
+    `
+  },
+  chromatography: {
+    title: "Chromatography",
+    img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=320&q=80",
+    presenter: "Riddhiman",
+    details: `
+      <p>As we dive into an important aspect of chemistry; Colours, Chromatography will help us engulf into how colours can be separated into different segments. This allows us to use them in ways that are helpful in dye making, colouring of clothes etc.</p>
+      <h4 style="margin-top:12px;font-weight:800;color:var(--cyan)">About Riddhiman</h4>
+      <p>Riddhiman is a student of grade 8 who will explain how chromatography is a vital experiment of chemistry and how it can help us understand chemistry better in molecular form. He is very irritating student etc. etc.</p>
+    `
+  },
+  balloon: {
+    title: "Burning & Bursting Balloon Challenge",
+    img: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=320&q=80",
+    presenter: "Vedant",
+    details: `
+      <p>Given 4 choices, choose an item which can be used to burst the balloon and attain a special prize. Discover the mystery in which a balloon bursts but one doesn't.</p>
+      <h4 style="margin-top:12px;font-weight:800;color:var(--cyan)">About Vedant</h4>
+      <p>Vedant is a student of grade 8 who will challenge you and ask you some questions. Onwards he will reveal his magic & chemistry behind it, to let you understand how the balloon isn't magical, the chemistry behind it is magical. He is a shy boy.</p>
+    `
+  },
+  ink: {
+    title: "PH with Invisible Ink",
+    img: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=320&q=80",
+    presenter: "Vihaan",
+    details: `
+      <p>Magic? Invisible ink! Dive into the world of chemistry as it surprises you with an invention or rather an accidental discovery that led to the formation of what we now call invisible ink.</p>
+      <h4 style="margin-top:12px;font-weight:800;color:var(--cyan)">About Vihaan</h4>
+      <p>Vihaan is a student of grade 8 who will explain to you how this act works and reveal the chemistry that lies behind it. He is a very naughty and mischievous boy.</p>
+    `
+  },
+  caramel: {
+    title: "Caramelization",
+    img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=320&q=80",
+    presenter: "Arjun, Pranit, Ridhik",
+    details: `
+      <p>Today we will be exploring the flavourful side of chemistry. The part where your kitchen secretly turns into a chemistry lab. The only reaction where sugar can convert into heaven or hell depending on your timing.</p>
+      <h4 style="margin-top:12px;font-weight:800;color:var(--cyan)">About The Trio</h4>
+      <p>The trio are students of grade 9 who will test your taste buds to see whether you like caramel or not. They are very bad students, and often make mistakes so keep your eyes sharp!</p>
+    `
+  },
+  biscuit: {
+    title: "Pricking Balloon & Floating Biscuit",
+    img: "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=320&q=80",
+    presenter: "Heril",
+    details: `
+      <p>A biscuit floats then the same sinks. How? Unravel the science, rather the chemistry behind it that performs this great phenomena. A challenge also lies ahead as you need to insert a needle inside a balloon without bursting it. Try it out. Gain some rewards if you win.</p>
+      <h4 style="margin-top:12px;font-weight:800;color:var(--cyan)">About Heril</h4>
+      <p>Heril is a student of grade 8 who is the master of challenges and tricks that can deceive your eyes. He will later explain the chemistry behind his tricks. Heril doesn't speak much.</p>
+    `
+  }
+};
+
+function openExperimentModal(key) {
+  const exp = EXPERIMENTS[key];
+  if (!exp) return;
+  const modal = document.getElementById('experimentModal');
+  const content = document.getElementById('experimentModalContent');
+  content.innerHTML = `
+    <div style="display:flex;align-items:center;gap:18px;">
+      <img src="${exp.img}" alt="${exp.title}" style="width:80px;height:80px;border-radius:14px;object-fit:cover;">
+      <div>
+        <h2 style="font-size:24px;font-weight:900;color:var(--cyan);margin-bottom:4px;">${exp.title}</h2>
+        <div class="muted" style="margin-bottom:10px;">Presented by: ${exp.presenter}</div>
+      </div>
+    </div>
+    <div style="margin-top:18px;color:rgba(230,247,255,0.92);line-height:1.6;">
+      ${exp.details}
+    </div>
+  `;
+  modal.style.display = 'block';
+  document.body.style.overflow = 'hidden';
+  // Add ripple and spark effect
+  const x = window.innerWidth / 2, y = window.innerHeight / 2;
+  if (typeof createRipple === 'function') createRipple(x, y, '#66e7ff', 600, 900);
+  if (typeof triggerElectricSpark === 'function') triggerElectricSpark(modal);
+}
+
+function closeExperimentModal() {
+  document.getElementById('experimentModal').style.display = 'none';
+  document.body.style.overflow = 'auto';
+}
+
+// Close modal when clicking outside content
+document.getElementById('experimentModal').addEventListener('click', function(e) {
+  if (e.target === this) closeExperimentModal();
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeExperimentModal();
+});
+</script>
 
   <!-- SCHEDULE -->
   <section id="schedule" class="mb-12 reveal">
