@@ -1633,20 +1633,36 @@ document.getElementById('exploreBtn').addEventListener('click', ()=> {
 });
 
 /* If loaded with hash for a page, open it on load */
-window.addEventListener('DOMContentLoaded', ()=>{
-  const hash = location.hash.replace('#','');
-  if(hash && (hash in PAGES)){
+window.addEventListener('DOMContentLoaded', () => {
+  const hash = location.hash.replace('#', '');
+  if (hash && (hash in PAGES)) {
     // open that page
-    setTimeout(()=> {
+    setTimeout(() => {
       renderPage(hash);
     }, 200);
   } else {
+    // Show main content
+    mainView.style.display = 'block';
+    detailView.style.display = 'none';
     // reveal in sequence
-    document.querySelectorAll('.reveal').forEach((el,i)=> setTimeout(()=> el.classList.add('show'), i*80));
+    document.querySelectorAll('.reveal').forEach((el, i) => setTimeout(() => el.classList.add('show'), i * 80));
   }
-  
+
   // Initialize audio system
   initAudio();
+});
+
+window.addEventListener('load', () => {
+  const h = location.hash.replace('#', '');
+  if (h && (h in PAGES)) {
+    history.replaceState({ page: h }, '', `#${h}`);
+    mainView.style.display = 'none';
+    detailView.style.display = 'block';
+  } else {
+    history.replaceState({ page: 'main' }, '', location.pathname);
+    mainView.style.display = 'block';
+    detailView.style.display = 'none';
+  }
 });
 
 /* Ensure audio context created only on user gesture (some browsers block auto audio if not) */
