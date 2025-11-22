@@ -256,8 +256,49 @@
   .exhibit-enhance:hover::before {
     opacity: 1;
   }
-  
-  /* Music visualizer */
+ 
+@media (max-width: 720px) {
+  /* nav: make full-width and enable collapsible menu */
+  nav { left:12px; transform:none; width:calc(100% - 24px); }
+  .navglass { padding:10px; gap:8px; align-items:center; }
+  .nav-toggle { display:inline-flex; width:44px; height:44px; border-radius:8px; align-items:center; justify-content:center; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.03); cursor:pointer; }
+  .nav-links { display:none; flex-direction:column; gap:8px; margin-top:8px; }
+  .navglass.nav-open .nav-links { display:flex; position:relative; width:100%; background:transparent; padding:8px 0; }
+
+  /* Hero & typography */
+  .hero { padding:24px 12px; min-height:60vh; }
+  .hero h1 { font-size:clamp(20px,9vw,34px); text-align:left; }
+  .hero p { font-size:15px; text-align:left; }
+
+  /* Main layout: stack columns into single column */
+  main { margin:20px auto 80px; padding:0 12px; }
+  #about > div, #exchange > div, #schedule > div, #exhibits + .slider, section#team > div, section#experiments > div {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Team & person cards: full width and larger touch area */
+  .panel.person { width:100%; padding:14px; box-sizing:border-box; }
+  .panel.person img, .panel.person > div > div:first-child { width:56px; height:56px; }
+
+  /* Slider & slides */
+  .slide { min-width:92% !important; }
+  .slide img { height:200px; }
+
+  /* Modal & overlay sizing */
+  .team-modal-overlay { top: 12px; left: 12px; right: 12px; bottom: 12px; padding:18px; }
+  .team-modal-content { grid-template-columns: 1fr !important; gap:12px; }
+  .bio-overlay { right:12px; left:12px; bottom:12px; width:auto; max-width:none; }
+
+  /* hide expensive canvases on small screens */
+  #bg-canvas, #ripple-canvas { display:none !important; pointer-events:none; }
+}
+
+/* extra small screens */
+@media (max-width: 420px) {
+  .navglass.nav-open .nav-links { position:static; }
+  .hero h1 { font-size:22px; }
+  .btn { padding:12px 14px; font-size:15px; }
+}
 
 </style>
 </head>
@@ -282,15 +323,23 @@
         <div style="font-size:12px;color:rgba(230,247,255,0.65)">2025 — Department of Chemical Sciences</div>
       </div>
     </div>
-    <div style="display:flex;gap:16px;align-items:center;">
-      <a href="#" class="navlink" data-scroll="home">Home</a>
-      <a href="#about" class="navlink" data-scroll="about">About</a>
-      <a href="#team" class="navlink" data-scroll="team">Team</a>
-      <a href="#teachers" class="navlink" data-scroll="teachers">Teachers</a>
-      <a href="#exhibits" class="navlink" data-scroll="exhibits">Exhibits</a>
-      <a href="#exchange" class="navlink" data-scroll="exchange">Exchange</a>
-      <a href="#contact" class="navlink" data-scroll="contact">Contact</a>
-    </div>
+    <!-- ...existing code... -->
+<div style="display:flex;gap:16px;align-items:center;">
+  <div class="nav-links" style="display:flex;gap:16px;align-items:center;">
+    <a href="#" class="navlink" data-scroll="home">Home</a>
+    <a href="#about" class="navlink" data-scroll="about">About</a>
+    <a href="#team" class="navlink" data-scroll="team">Team</a>
+    <a href="#teachers" class="navlink" data-scroll="teachers">Teachers</a>
+    <a href="#exhibits" class="navlink" data-scroll="exhibits">Exhibits</a>
+    <a href="#exchange" class="navlink" data-scroll="exchange">Exchange</a>
+    <a href="#contact" class="navlink" data-scroll="contact">Contact</a>
+  </div>
+
+  <!-- mobile nav toggle -->
+  <button id="navToggle" class="nav-toggle" aria-label="Open menu" style="display:none">
+    ☰
+  </button>
+</div>
   </div>
 </nav>
 <!-- HERO -->
@@ -797,6 +846,34 @@ document.getElementById('experimentModal').addEventListener('click', function(e)
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') closeExperimentModal();
 });
+// ...existing code...
+// Mobile nav toggle
+(function(){
+  const navToggle = document.getElementById('navToggle');
+  const navglass = document.querySelector('.navglass');
+  const links = document.querySelector('.nav-links');
+
+  function refreshToggle() {
+    if(window.innerWidth <= 720){
+      if(navToggle) navToggle.style.display = 'inline-flex';
+      if(links) links.style.display = 'none';
+    } else {
+      if(navToggle) navToggle.style.display = 'none';
+      if(navglass) navglass.classList.remove('nav-open');
+      if(links) links.style.display = 'flex';
+    }
+  }
+
+  window.addEventListener('resize', refreshToggle);
+  refreshToggle();
+
+  if(navToggle){
+    navToggle.addEventListener('click', function(){
+      navglass.classList.toggle('nav-open');
+      if(links) links.style.display = navglass.classList.contains('nav-open') ? 'flex' : 'none';
+    });
+  }
+})();
 </script>
 
   <!-- SCHEDULE -->
