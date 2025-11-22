@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Chemistry Exhibition 2025 — 150th Edition)</title>
+<title>Chemistry Exhibition 2025 — Dark Electric (Energy Edition)</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3CradialGradient id='glow' cx='50%25' cy='50%25' r='50%25'%3E%3Cstop offset='0%25' stop-color='%2300d8ff' stop-opacity='1'/%3E%3Cstop offset='70%25' stop-color='%237c3aed' stop-opacity='0.8'/%3E%3Cstop offset='100%25' stop-color='%23050714' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='50' cy='50' r='40' fill='url(%23glow)'/%3E%3Ccircle cx='50' cy='50' r='15' fill='%2300d8ff'/%3E%3Ccircle cx='50' cy='50' r='5' fill='%23ffffff'/%3E%3C/svg%3E">
 <style>
@@ -343,7 +343,7 @@
       <!-- Arjun -->
       <div class="panel person" tabindex="0" role="button" onclick="openTeamModal('arjun')" onkeypress="if(event.key==='Enter') openTeamModal('arjun')">
         <div style="display:flex;gap:12px;align-items:center">
-          <div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(90deg,var(--cyan),var(--violet));display:flex;align-items:center;justify-content:center;font-weight:900;color:#021226">AT</div>
+          <div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(90deg,var(--cyan),var(--violet));display:flex;align-items:center;justify-content:center;font-weight:900;color:#021226">A</div>
           <div>
             <div style="font-weight:900">Arjun Tosawad</div>
             <div class="muted">President</div>
@@ -354,7 +354,7 @@
       <!-- Samarth Jain -->
       <div class="panel person" tabindex="0" role="button" onclick="openTeamModal('samarth')" onkeypress="if(event.key==='Enter') openTeamModal('samarth')">
         <div style="display:flex;gap:12px;align-items:center">
-          <div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(90deg,#7c3aed,#00d8ff);display:flex;align-items:center;justify-content:center;font-weight:900;color:#021226">SJ</div>
+          <div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(90deg,#7c3aed,#00d8ff);display:flex;align-items:center;justify-content:center;font-weight:900;color:#021226">S</div>
           <div>
             <div style="font-weight:900">Samarth Jain</div>
             <div class="muted">Secretary</div>
@@ -366,7 +366,7 @@
       <!-- Vansh Mittal -->
       <div class="panel person" tabindex="0" role="button" onclick="openTeamModal('vansh')" onkeypress="if(event.key==='Enter') openTeamModal('vansh')">
         <div style="display:flex;gap:12px;align-items:center">
-          <div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(90deg,#00d8ff,#7c3aed);display:flex;align-items:center;justify-content:center;font-weight:900;color:#021226">VM</div>
+          <div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(90deg,#00d8ff,#7c3aed);display:flex;align-items:center;justify-content:center;font-weight:900;color:#021226">V</div>
           <div>
             <div style="font-weight:900">Vansh Mittal</div>
             <div class="muted">Secretary</div>
@@ -574,13 +574,31 @@ const EXPERIMENTS = {
     img: "https://png.pngtree.com/thumb_back/fh260/background/20230524/pngtree-h-2-atomic-model-3d-render-image_2611590.jpg",
     presenter: "Shaurya",
     details: `
-      <p>Welcome to the Metal Display, an engaging exploration of the remarkable materials that have shaped our world across centuries. This exhibition showcases a variety of metals, each chosen for its unique properties, fascinating behavior, and powerful influence on human history. From the tools crafted by ancient civilizations to the advanced technologies of today, metals have played a central role in the development of societies, industries, and everyday life.
+      <h3 style="font-weight:800;color:var(--cyan)">Overview</h3>
+      <p class="muted">A hands-on journey through the physical and chemical properties of common and advanced metals. This display pairs tactile samples, simple reactivity demos and micro-analytical observations to reveal why different metals behave the way they do in everyday life and in high-tech applications.</p>
 
-As you walk through the display, you will discover how each metal carries its own story—its appearance, its strengths, its uses, and the impact it has had on people throughout time. Parents and visitors are encouraged to interact with the students, ask questions, and discuss their observations. These conversations will enrich your experience and help you understand how deeply metals are woven into our daily routines, from the objects we handle to the machines we depend on. The exhibit also highlights how metals affected the lives of people in the past, shaping tools, weapons, art, trade, and technological advancements that changed the course of history.</p>
+      <h4 style="margin-top:12px;font-weight:800;color:var(--violet)">Learning objectives</h4>
+      <ul class="muted" style="line-height:1.6">
+        <li>Understand basic physical properties: density, malleability, ductility and conductivity.</li>
+        <li>See reactivity trends with small, safe demonstrations (e.g., oxidation of iron vs. aluminium passivation).</li>
+        <li>Learn how alloying and microstructure modify mechanical behavior and corrosion resistance.</li>
+      </ul>
+
+      <h4 style="margin-top:12px;font-weight:800;color:var(--violet)">Demonstrations & methods</h4>
+      <p class="muted">Interactive stations include: comparison of coins/alloys for hardness and magnetic response; a corrosion vignette showing accelerated rusting under controlled conditions; an electrical conductivity test using a low-voltage circuit and LED; and microscopy images that highlight grain structure differences between annealed and cold-worked samples.</p>
+
+      <h4 style="margin-top:12px;font-weight:800;color:var(--violet)">Materials & safety</h4>
+      <p class="muted">All demos use low-risk materials and follow simple PPE rules. Visitors should not handle chemical reagents; demonstrations with acids or salt solutions are performed behind shields by student demonstrators with gloves and eye protection.</p>
+
+      <h4 style="margin-top:12px;font-weight:800;color:var(--violet)">Discussion prompts for visitors</h4>
+      <ol class="muted">
+        <li>Why is aluminium used for aircraft bodies even though it is softer than steel?</li>
+        <li>How do impurities and heat treatment change the properties of a metal?</li>
+        <li>Where does recycling of metals save the most energy—mining or reprocessing?</li>
+      </ol>
+
       <h4 style="margin-top:12px;font-weight:800;color:var(--cyan)">About Shaurya</h4>
-      <p>Your guide for this experience is Shaurya, a spirited and enthusiastic Grade 9 student with a lively personality and a contagious sense of curiosity. He enjoys presenting science in a fun and interactive way and is known for being just a little bit of a playful menace. With his energetic explanations, surprising facts, and humorous style, Shaurya will make sure the discussion stays engaging and memorable for both children and adults.
-
-Whether he is explaining how metals react, why they are essential to modern technology, or how they shaped ancient civilizations, Shaurya brings a unique charm that makes learning enjoyable. Prepare for an insightful, entertaining, and slightly unpredictable journey through the world of metals with Shaurya leading the way. Beware he is a MENACE!</p>
+      <p class="muted">Shaurya guides each station, explaining concepts with simple analogies and short numerical comparisons. Ask him about everyday alloys like bronze and stainless steel.</p>
     `
   },
   chromatography: {
@@ -588,9 +606,31 @@ Whether he is explaining how metals react, why they are essential to modern tech
     img: "https://t4.ftcdn.net/jpg/06/50/39/37/360_F_650393738_IEd4veuWhgdiuSphegy6jyeRFnyPQV6h.jpg",
     presenter: "Riddhiman",
     details: `
-      <p>As we dive into an important aspect of chemistry; Colours, Chromatography will help us engulf into how colours can be separated into different segments. This allows us to use them in ways that are helpful in dye making, colouring of clothes etc.</p>
+      <h3 style="font-weight:800;color:var(--cyan)">Overview</h3>
+      <p class="muted">A visual and experimental exploration of how mixtures separate into components using solubility, adsorption and capillary action. Visitors will see pigment separation, ink analysis and a simple food-dye identification workflow.</p>
+
+      <h4 style="margin-top:12px;font-weight:800;color:var(--violet)">Learning objectives</h4>
+      <ul class="muted" style="line-height:1.6">
+        <li>Recognize different types of chromatography: paper, thin-layer, and column at a conceptual level.</li>
+        <li>Relate polarity, solvent choice and stationary phase to separation quality.</li>
+        <li>Understand practical uses: forensic ink identification, dye analysis and quality control.</li>
+      </ul>
+
+      <h4 style="margin-top:12px;font-weight:800;color:var(--violet)">Demonstrations & methods</h4>
+      <p class="muted">Live paper chromatography: visitors place a dot of marker on paper, submerge the end in solvent, and watch pigments travel at different speeds. A TLC station shows separation of plant extracts under UV light (viewing only, handled by demonstrator). A simple chromatography "mystery sample" challenge encourages visitors to match unknowns to reference spots.</p>
+
+      <h4 style="margin-top:12px;font-weight:800;color:var(--violet)">Materials & safety</h4>
+      <p class="muted">Solvents used are low-toxicity (ethanol, water, small proportion of food-safe solvents). All handling of UV lamps and solvents is performed by staff; visitors observe and record color bands.</p>
+
+      <h4 style="margin-top:12px;font-weight:800;color:var(--violet)">Visitor activities</h4>
+      <ol class="muted">
+        <li>Create your own chromatogram from common markers or tea extracts.</li>
+        <li>Predict which solvent will separate a given pigment best and test the hypothesis.</li>
+        <li>Match an unknown ink sample to a reference set in a timed challenge.</li>
+      </ol>
+
       <h4 style="margin-top:12px;font-weight:800;color:var(--cyan)">About Riddhiman</h4>
-      <p>Riddhiman is a student of grade 8 who will explain how chromatography is a vital experiment of chemistry and how it can help us understand chemistry better in molecular form. He is very irritating student etc. etc.</p>
+      <p class="muted">Riddhiman explains separation theory with approachable language and helps visitors design quick experiments to test solvent polarity effects.</p>
     `
   },
   balloon: {
@@ -598,9 +638,30 @@ Whether he is explaining how metals react, why they are essential to modern tech
     img: "https://media.istockphoto.com/id/1481902688/photo/party-decoration-various-colorful-balloons-flying-in-the-blue-sky-holiday-card-flat-lay-top.jpg?s=612x612&w=0&k=20&c=XKPrCICRBo5wYent1Nh3Lg3ZziSfC523F2FoOlMRsY0=",
     presenter: "Vedant",
     details: `
-      <p>Given 4 choices, choose an item which can be used to burst the balloon and attain a special prize. Discover the mystery in which a balloon bursts but one doesn't.</p>
+      <h3 style="font-weight:800;color:var(--cyan)">Overview</h3>
+      <p class="muted">A set of surprising but safe demonstrations that reveal how chemistry and physics control whether a balloon bursts or survives flame contact. The activity uses water, different gases and simple insulating tricks to illustrate heat transfer and combustion.</p>
+
+      <h4 style="margin-top:12px;font-weight:800;color:var(--violet)">Learning objectives</h4>
+      <ul class="muted" style="line-height:1.6">
+        <li>Learn heat-transfer basics: why a water-filled balloon can withstand a candle while an empty one bursts.</li>
+        <li>Understand how gas composition (air vs. hydrogen/helium) affects buoyancy and flame behavior.</li>
+        <li>Experience controlled risk demonstrations with clear safety boundaries.</li>
+      </ul>
+
+      <h4 style="margin-top:12px;font-weight:800;color:var(--violet)">Demonstrations & methods</h4>
+      <p class="muted">Demonstrators show a candle-and-balloon test, a water-filled balloon vs. an air-filled balloon over flame, and a safe "burst vs. survive" challenge with insulating layers (handled only by staff). Explanatory diagrams show energy flow and flame chemistry at a high level.</p>
+
+      <h4 style="margin-top:12px;font-weight:800;color:var(--violet)">Safety & conduct</h4>
+      <p class="muted">All flame work is performed behind a safety screen; fire extinguishers and trained supervisors are present. Visitors are not permitted to light flames themselves.</p>
+
+      <h4 style="margin-top:12px;font-weight:800;color:var(--violet)">Interactive challenge</h4>
+      <ol class="muted">
+        <li>Pick which balloon (water-filled, air-filled, or insulating-layer) will survive a candle flame and explain why.</li>
+        <li>Students reveal results and discuss the energy balance and material properties involved.</li>
+      </ol>
+
       <h4 style="margin-top:12px;font-weight:800;color:var(--cyan)">About Vedant</h4>
-      <p>Vedant is a student of grade 8 who will challenge you and ask you some questions. Onwards he will reveal his magic & chemistry behind it, to let you understand how the balloon isn't magical, the chemistry behind it is magical. He is a shy boy.</p>
+      <p class="muted">Vedant guides the challenge and quizzes visitors with short prediction tasks to make the science stick.</p>
     `
   },
   ink: {
@@ -608,9 +669,30 @@ Whether he is explaining how metals react, why they are essential to modern tech
     img: "https://i.ebayimg.com/images/g/Oe8AAOSwkGlc-fNN/s-l1200.jpg",
     presenter: "Vihaan",
     details: `
-      <p>Magic? Invisible ink! Dive into the world of chemistry as it surprises you with an invention or rather an accidental discovery that led to the formation of what we now call invisible ink.</p>
+      <h3 style="font-weight:800;color:var(--cyan)">Overview</h3>
+      <p class="muted">Explore the chemistry of acid–base indicators and redox reactions through invisible-ink demonstrations. Visitors will learn how simple household substances produce color changes and how pH affects molecular structure and optical properties.</p>
+
+      <h4 style="margin-top:12px;font-weight:800;color:var(--violet)">Learning objectives</h4>
+      <ul class="muted" style="line-height:1.6">
+        <li>Understand what an indicator is and how pH shifts produce visible color changes.</li>
+        <li>See chemical methods for making text appear and disappear safely.</li>
+        <li>Appreciate historical uses of invisible ink and modern analytical parallels.</li>
+      </ul>
+
+      <h4 style="margin-top:12px;font-weight:800;color:var(--violet)">Demonstrations & methods</h4>
+      <p class="muted">Stations include lemon-juice writing revealed by gentle heat (demonstrator-operated), phenolphthalein/anthocyanin indicators showing color changes across a pH scale, and a simple redox-based reveal using safe reagents. Explanatory posters connect molecular structure to color.</p>
+
+      <h4 style="margin-top:12px;font-weight:800;color:var(--violet)">Materials & safety</h4>
+      <p class="muted">Only food-safe or low-toxicity chemicals are used; no hazardous solvents. Visitors may handle indicator papers under supervision but not hot plates or reagents.</p>
+
+      <h4 style="margin-top:12px;font-weight:800;color:var(--violet)">Hands-on activity</h4>
+      <ol class="muted">
+        <li>Write a short secret message with a lemon-juice pen (staff will reveal using safe heat).</li>
+        <li>Test household liquids (soap, vinegar, soda) on indicator paper to compare pH effects.</li>
+      </ol>
+
       <h4 style="margin-top:12px;font-weight:800;color:var(--cyan)">About Vihaan</h4>
-      <p>Vihaan is a student of grade 8 who will explain to you how this act works and reveal the chemistry that lies behind it. He is a very naughty and mischievous boy.</p>
+      <p class="muted">Vihaan explains the molecular basis of indicators and supervises hands-on pH testing for younger visitors.</p>
     `
   },
   caramel: {
@@ -618,9 +700,30 @@ Whether he is explaining how metals react, why they are essential to modern tech
     img: "https://img.freepik.com/premium-photo/abstract-background-pattern-minimalistic-wave-clean-simple-modern-texture-colorful-shapes_941600-389761.jpg",
     presenter: "Arjun, Pranit, Ridhik",
     details: `
-      <p>Today we will be exploring the flavourful side of chemistry. The part where your kitchen secretly turns into a chemistry lab. The only reaction where sugar can convert into heaven or hell depending on your timing.</p>
-      <h4 style="margin-top:12px;font-weight:800;color:var(--cyan)">About The Trio</h4>
-      <p>The trio are students of grade 9 who will test your taste buds to see whether you like caramel or not. They are very bad students, and often make mistakes so keep your eyes sharp!</p>
+      <h3 style="font-weight:800;color:var(--cyan)">Overview</h3>
+      <p class="muted">A sensory and chemical look at thermal sugar chemistry. This station demonstrates how heating sugars leads to flavour and color development through a cascade of dehydration, fragmentation and polymerization steps collectively called caramelization.</p>
+
+      <h4 style="margin-top:12px;font-weight:800;color:var(--violet)">Learning objectives</h4>
+      <ul class="muted" style="line-height:1.6">
+        <li>Identify temperature ranges where Maillard reactions vs. caramelization dominate.</li>
+        <li>Relate reaction time and temperature to color, aroma and texture outcomes.</li>
+        <li>Understand practical applications in food science and materials (e.g., browning inhibitors).</li>
+      </ul>
+
+      <h4 style="margin-top:12px;font-weight:800;color:var(--violet)">Demonstrations & sensory tests</h4>
+      <p class="muted">Safe tabletop demonstrations (pre-cooked samples for smell/taste) show stages from light amber to deep caramel. Visual charts map temperature to reaction progress and short videos reveal microscopic changes in sugar molecules as they dehydrate and polymerize.</p>
+
+      <h4 style="margin-top:12px;font-weight:800;color:var(--violet)">Safety & allergen notes</h4>
+      <p class="muted">Samples are prepared in advance and labeled for allergens. No open flames or hot pans are used in visitor areas—heated samples are handled by staff.</p>
+
+      <h4 style="margin-top:12px;font-weight:800;color:var(--violet)">Visitor engagement</h4>
+      <ol class="muted">
+        <li>Taste small, labeled samples at different caramelization stages and note flavor descriptors.</li>
+        <li>Predict how changing sugar type (sucrose vs. fructose) alters browning behavior.</li>
+      </ol>
+
+      <h4 style="margin-top:12px;font-weight:800;color:var(--cyan)">About the trio</h4>
+      <p class="muted">The team leads sensory-guided explanations and connects kitchen chemistry to industrial flavor science.</p>
     `
   },
   biscuit: {
@@ -628,13 +731,33 @@ Whether he is explaining how metals react, why they are essential to modern tech
     img: "https://www.shutterstock.com/image-photo/sandwich-cookie-falling-into-milk-600nw-2369471729.jpg",
     presenter: "Heril",
     details: `
-      <p>A biscuit floats then the same sinks. How? Unravel the science, rather the chemistry behind it that performs this great phenomena. A challenge also lies ahead as you need to insert a needle inside a balloon without bursting it. Try it out. Gain some rewards if you win.</p>
+      <h3 style="font-weight:800;color:var(--cyan)">Overview</h3>
+      <p class="muted">Two playful physics–chemistry puzzles: (1) pricking a balloon without bursting it using material stresses and lubrication; (2) making a biscuit float or sink by altering surface tension and density. Both activities encourage hypothesis testing and careful observation.</p>
+
+      <h4 style="margin-top:12px;font-weight:800;color:var(--violet)">Learning objectives</h4>
+      <ul class="muted" style="line-height:1.6">
+        <li>Understand the role of surface tension, contact area and material strength in preventing rupture.</li>
+        <li>Relate buoyancy, density and surface tension to whether an object floats or sinks.</li>
+        <li>Practice designing simple experiments and controlling variables.</li>
+      </ul>
+
+      <h4 style="margin-top:12px;font-weight:800;color:var(--violet)">Demonstrations & stepwise guide</h4>
+      <p class="muted">The "prick without popping" demo uses a soaked wooden skewer and a water-filled balloon to show how the water redistributes stress. The "floating biscuit" activity compares biscuits with different coatings (butter, oil) or trapped air pockets and uses a water dish to test buoyancy while explaining capillary effects.</p>
+
+      <h4 style="margin-top:12px;font-weight:800;color:var(--violet)">Safety & hygiene</h4>
+      <p class="muted">Food items are handled with gloves and pre-packaged samples are provided for tasting or inspection. Sharp objects are used only by demonstrators behind a barrier.</p>
+
+      <h4 style="margin-top:12px;font-weight:800;color:var(--violet)">Visitor challenges</h4>
+      <ol class="muted">
+        <li>Predict which biscuit treatment will float and propose a testable explanation.</li>
+        <li>Watch the pricking demo and sketch stress lines—where would you place the skewer?</li>
+      </ol>
+
       <h4 style="margin-top:12px;font-weight:800;color:var(--cyan)">About Heril</h4>
-      <p>Heril is a student of grade 8 who is the master of challenges and tricks that can deceive your eyes. He will later explain the chemistry behind his tricks. Heril doesn't speak much.</p>
+      <p class="muted">Heril runs the puzzle stations, encouraging visitors to make predictions and record observations—perfect for curious kids and families.</p>
     `
   }
 };
-
 function openExperimentModal(key) {
   const exp = EXPERIMENTS[key];
   if (!exp) return;
