@@ -444,20 +444,26 @@
     <div style="margin-top:12px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;">
       <div class="panel person" tabindex="0" role="button" onclick="openBio('sankalp')" onkeypress="if(event.key==='Enter') openBio('sankalp')">
         <div style="font-weight:900;color:var(--cyan)">Mr. Sankalp Maheshwari</div>
-        <div class="muted" style="margin-top:6px">Professor of Organic Chemistry</div>
-        <p class="muted" style="margin-top:8px">Leads experimental design and pyrotechnics demonstrations; safety-first approach to dynamic displays and synthesis.</p>
+        <div class="muted" style="margin-top:6px">HOD Of Chemistry</div>
+        <p class="muted" style="margin-top:8px">Sir Sankalp is the leading teacher of Chemistry, who dives into vast chemistry concepts; explaining them in detail </p>
       </div>
 
       <div class="panel person" tabindex="0" role="button" onclick="openBio('ankita')" onkeypress="if(event.key==='Enter') openBio('ankita')">
-        <div style="font-weight:900;color:var(--cyan)">Mrs. Ankita Sharma</div>
-        <div class="muted" style="margin-top:6px">Associate Professor — Materials & Nanotech</div>
-        <p class="muted" style="margin-top:8px">Mentors nanotech exhibits and materials characterization workflows.</p>
+        <div style="font-weight:900;color:var(--cyan)">Dr. Ankita Sharma</div>
+        <div class="muted" style="margin-top:6px">Associate Professor</div>
+        <p class="muted" style="margin-top:8px">Also A leading techer of Chemistry, Ma'am Ankita likes to teach Organic Chemistry and helps openly with queries of Students.</p>
       </div>
 
       <div class="panel person" tabindex="0" role="button" onclick="openBio('sudeep')" onkeypress="if(event.key==='Enter') openBio('sudeep')">
         <div style="font-weight:900;color:var(--cyan)">Mr. Sudeep Chaubey </div>
         <div class="muted" style="margin-top:6px">Lecturer — Physical & Analytical Chemistry</div>
-        <p class="muted" style="margin-top:8px">Leads forensic chemistry demos and spectroscopy workshops.</p>
+        <p class="muted" style="margin-top:8px">A keen Chemist Sir Sudeep reads constant new updates and latest articles of Chemistry. His interest in Chemistry is inspiring to Students who learn from him.</p>
+      </div>
+    </div>
+     <div class="panel person" tabindex="0" role="button" onclick="openBio('manisha')" onkeypress="if(event.key==='Enter') openBio('manisha')">
+        <div style="font-weight:900;color:var(--cyan)">Mrs. Manisha Rathore </div>
+        <div class="muted" style="margin-top:6px">Lab Assistant</div>
+        <p class="muted" style="margin-top:8px">Mrs. Manisha Rathore has a love of chemistry and chemicals, her love of learning is just inspiring for young students to move on and pursue their dreams. </p>
       </div>
     </div>
   </section>
@@ -1699,11 +1705,16 @@ const BIOS = {
     role: 'Lecturer — Physical & Analytical Chemistry',
     bio: 'Mr. Sudeep leads forensic demonstrations and spectroscopy workshops, with an emphasis on analytical rigor and hands-on data interpretation.',
     fun: 'Fun fact: Sudeep designs mini forensic puzzles for visitors.'
-  }
+  },
+  'manisha': {
+  name: 'Mrs. Manisha Rathore',
+  role: 'Lab Assistant & Safety Coordinator',
+  bio: 'Mrs. Rathore manages lab equipment, safety protocols and student training. Her passion for chemistry safety ensures all demonstrations meet the highest standards.',
+  fun: 'Fun fact: Manisha has trained over 200 students in proper lab safety procedures.'
+}
 };
 
 const bioContainer = document.getElementById('bioContainer');
-
 function openBio(key){
   const p = BIOS[key];
   if(!p) return;
