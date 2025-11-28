@@ -435,6 +435,52 @@
         </div>
         <p class="muted" style="margin-top:8px">Website, Presentations and Technical Support.</p>
       </div>
+      <!-- Daksh -->
+       <div class="panel person" tabindex="0" role="button" onclick="openTeamModal('aksh')" onkeypress="if(event.key==='Enter') openTeamModal('aksh')">
+        <div style="display:flex;gap:12px;align-items:center">
+          <div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(90deg,#00d8ff,#7c3aed);display:flex;align-items:center;justify-content:center;font-weight:900;color:#021226">ASH</div>
+          <div>
+            <div style="font-weight:900">Daksh Jindal</div>
+            <div class="muted">Design Head</div>
+          </div>
+        </div>
+        <p class="muted" style="margin-top:8px">TSDC Support & Poster Designs</p>
+      </div>
+      <!-- Keiyaan -->
+       <div class="panel person" tabindex="0" role="button" onclick="openTeamModal('aksh')" onkeypress="if(event.key==='Enter') openTeamModal('aksh')">
+        <div style="display:flex;gap:12px;align-items:center">
+          <div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(90deg,#00d8ff,#7c3aed);display:flex;align-items:center;justify-content:center;font-weight:900;color:#021226">ASH</div>
+          <div>
+            <div style="font-weight:900">Keiyaan Sharma</div>
+            <div class="muted">Logistics Head</div>
+          </div>
+        </div>
+        <p class="muted" style="margin-top:8px">Head of Logistics & Sound</p>
+      </div>
+      <!-- Amogh -->
+       <div class="panel person" tabindex="0" role="button" onclick="openTeamModal('aksh')" onkeypress="if(event.key==='Enter') openTeamModal('aksh')">
+        <div style="display:flex;gap:12px;align-items:center">
+          <div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(90deg,#00d8ff,#7c3aed);display:flex;align-items:center;justify-content:center;font-weight:900;color:#021226">ASH</div>
+          <div>
+            <div style="font-weight:900">Amogh Mathur</div>
+            <div class="muted">Student Manager - Experiments Head</div>
+          </div>
+        </div>
+        <p class="muted" style="margin-top:8px">
+          Leads experiment setups and student management for smooth execution of demonstrations.
+        </p>
+      </div>
+      <!-- Aksh -->
+       <div class="panel person" tabindex="0" role="button" onclick="openTeamModal('aksh')" onkeypress="if(event.key==='Enter') openTeamModal('aksh')">
+        <div style="display:flex;gap:12px;align-items:center">
+          <div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(90deg,#00d8ff,#7c3aed);display:flex;align-items:center;justify-content:center;font-weight:900;color:#021226">ASH</div>
+          <div>
+            <div style="font-weight:900">Gautam Agarwal</div>
+            <div class="muted">Student Manager - Safety Head</div>
+          </div>
+        </div>
+        <p class="muted" style="margin-top:8px">Safety Protocols & Student Manager</p>
+      </div>
     </div>
   </section>
 
@@ -444,7 +490,7 @@
     <div style="margin-top:12px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;">
       <div class="panel person" tabindex="0" role="button" onclick="openBio('sankalp')" onkeypress="if(event.key==='Enter') openBio('sankalp')">
         <div style="font-weight:900;color:var(--cyan)">Mr. Sankalp Maheshwari</div>
-        <div class="muted" style="margin-top:6px">HOD Of Chemistry</div>
+        <div class="muted" style="margin-top:6px">Lecturer Of Chemistry</div>
         <p class="muted" style="margin-top:8px">Sir Sankalp is the leading teacher of Chemistry, who dives into vast chemistry concepts; explaining them in detail </p>
       </div>
 
@@ -1351,9 +1397,70 @@ const TEAM_MEMBERS = {
       
       <p>He works closely with faculty and student leads to translate exhibit concepts into reliable technical demos, applies pragmatic security and accessibility standards, and delivers onboarding and troubleshooting on event day to ensure a smooth visitor experience.</p>
     `
-  }
-};
+  },
+  'daksh': {
+    name: 'Daksh Jindal',
+    role: 'Design Head',
+    imageLetter: 'DJ',
+    details: `
+      <p><strong>Overview</strong></p>
+      <p>Daksh Jindal leads the design direction for the Chemistry Exhibition, creating the visual identity, exhibit graphics, signage and spatial layouts that make complex science approachable and engaging for visitors.</p>
 
+      <p><strong>Responsibilities</strong></p>
+      <ul class="muted">
+        <li>Designs posters, informational panels, wayfinding and digital assets to ensure a consistent exhibition aesthetic.</li>
+        <li>Works with student teams to prototype booth layouts, interactive UI, and physical mock-ups to optimise visitor flow and accessibility.</li>
+        <li>Manages production files, liaises with print/AV vendors, and oversees installation of graphics and displays on event day.</li>
+      </ul>
+
+      <p><strong>Skills & approach</strong></p>
+      <p class="muted">Daksh blends UX thinking with practical production skills (Figma/Adobe suite, prototyping and basic fabrication), focusing on clarity, accessibility and memorable visual storytelling.</p>
+    `
+  },
+  'keiyaan': {
+    name: 'Keiyaan Sharma',
+    role: 'Logistics Head',
+    imageLetter: 'KS',
+    details: `
+      <p>Keiyaan Sharma is the Logistics Head for the Chemistry Exhibition, overseeing all operational aspects to ensure a seamless event execution.</p>
+      
+      <p>His responsibilities include coordinating transportation and setup of exhibits, managing inventory of materials and equipment, and liaising with venue staff to ensure compliance with safety regulations.</p>
+      
+      <p>Keiyaan's strong organizational skills and attention to detail enable him to effectively manage timelines, troubleshoot issues, and facilitate communication among various teams, ensuring that all logistical elements align with the exhibition's goals.</p>
+    `
+  },
+   'amogh': {
+    name: 'Amogh Mathur',
+    role: 'Student Manager',
+    imageLetter: 'AM',
+    details: `
+      <p><strong>Overview</strong></p>
+      <p>Amogh Mathur coordinates volunteer rosters, shift schedules and on-site operations to ensure each exhibit is staffed and equipped throughout the event.</p>
+
+      <p><strong>Key responsibilities</strong></p>
+      <ul class="muted">
+        <li>Recruiting and training student volunteers; building and managing shift rosters.</li>
+        <li>Preparing setup/teardown plans, maintaining equipment inventories and checklists.</li>
+        <li>Acting as student–faculty liaison and first responder for operational issues.</li>
+        <li>Compiling attendance and post-event operational reports.</li>
+      </ul>
+
+      <p class="muted"><strong>Approach:</strong> pragmatic, detail-oriented, and focused on clear communication to keep exhibits running smoothly.</p>
+    `
+  },
+  'gautam': {
+    name: 'Gautam Agarwal',
+    role: 'Student Manager - Safety Head',
+    imageLetter: 'GA',
+    details: `
+      <p>Gautam Agarwal is the Safety Head for the Chemistry Exhibition, responsible for developing and implementing comprehensive safety protocols to ensure a secure environment for all participants.</p>
+      
+      <p>His duties include conducting risk assessments for each exhibit, coordinating with local safety authorities, and overseeing the training of staff and volunteers in emergency procedures.</p>
+      
+      <p>Gautam's expertise in chemical safety and emergency response planning ensures that all exhibits comply with regulatory standards, while also fostering a culture of safety awareness among attendees and staff alike.</p>
+    `
+  }
+}; 
 /* ----------------------------
   Team Member Modal Functions
 -----------------------------*/
